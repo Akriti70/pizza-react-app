@@ -4,6 +4,8 @@ import PizzaCard from '../components/PizzaCard'
 import { supabase } from '../supabaseClient'
 
 
+
+
 export default function Menu() {
   const [pizzas, setPizzas] = useState([])
 
