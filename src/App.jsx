@@ -1,25 +1,20 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Menu from './pages/Menu'
 import { useEffect, useState } from 'react'
-import { supabase } from './supabase/supabaseClient'
+import {supabasePizzas} from './supabase/SupabasePizzas'
 
 function App() {
 
 // pizzas from Supabase
   const [pizzas, setPizzas] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    let {data, error} = await supabase.from('pizzas').select('*');
-    if (error) console.error(error);
-    else {
-      console.log('Fetched data:', data);
+ useEffect(() => {
+    async function fetchData() {
+      const data = await supabasePizzas();
       setPizzas(data);
     }
-  };
+    fetchData();
+  }, []);
 ////
  
   return (
