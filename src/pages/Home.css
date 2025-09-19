@@ -1,0 +1,38 @@
+
+.home {
+  background: linear-gradient(to right, #dc2626, #facc15);
+  color: white;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.home h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.home p {
+  max-width: 600px;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.order-btn {
+  background: white;
+  color: #dc2626;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.order-btn:hover {
+  background: #facc15;
+  color: #1f2937;
+}

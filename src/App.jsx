@@ -1,33 +1,34 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import Menu from './pages/Menu'
-import { useEffect, useState } from 'react'
-import {supabasePizzas} from './supabase/SupabasePizzas'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
-function App() {
-
-// pizzas from Supabase
-  const [pizzas, setPizzas] = useState([]);
-
- useEffect(() => {
-    async function fetchData() {
-      const data = await supabasePizzas();
-      setPizzas(data);
-    }
-    fetchData();
-  }, []);
-////
- 
+export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-red-500 p-4 text-white text-xl font-bold">
-        <Link to="/">Pizza App</Link>
-      </header>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        {/* Navbar */}
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Menu pizzas={pizzas}/>} />
-      </Routes>
-    </div>
+        {/* Routes */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            
+            {/* Partner ke liye future routes */}
+            <Route path="/menu" element={<h1 className="p-10 text-3xl">Menu Page 🍕</h1>} />
+            <Route path="/cart" element={<h1 className="p-10 text-3xl">Cart Page 🛒</h1>} />
+            <Route path="/checkout" element={<h1 className="p-10 text-3xl">Checkout Page ✅</h1>} />
+          </Routes>
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
   )
 }
-
-export default App
