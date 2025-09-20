@@ -1,17 +1,30 @@
+import './PizzaCard.css'
+
 export default function PizzaCard({ pizza }) {
   return (
-    <div className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-      <img
+
+    <div className="pizza-container">
+
+
+
+      <div className='pizza-img-container'>
+      <img 
         src={pizza.image}
         alt={pizza.name}
-        className="w-full h-40 object-cover rounded-md mb-2"
+        className="pizza-img"
       />
-      <h2 className="text-lg font-bold">{pizza.name}</h2>
-      <p className="text-gray-600">{pizza.ingredients}</p>
-      <p className="text-red-500 font-semibold mt-2">{pizza.price} $</p>
-      <button className="mt-3 w-full bg-red-500 text-white py-1 rounded hover:bg-red-600">
+      </div>
+      <div className='pizza-items-container'>
+      <h2 className="izza-h2">{pizza.name}</h2>
+      <p className="pizza-ingredients">{pizza.ingredients.join(', ')}</p>
+      <p className="pizza-price">{pizza.price} $</p>
+      <button className="pizza-button">
         Add to Cart
       </button>
+      </div>
+
+
+
     </div>
   )
 }
