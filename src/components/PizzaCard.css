@@ -1,44 +1,44 @@
-.pizza-container{
-    background-color: rgb(250, 235, 215);
-    display: flex;
-    margin: 1rem;
-    max-width:100%;
-    border-radius: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.pizza-container {
+  background-color: rgb(250, 235, 215);
+  display: flex;
+  margin: 1rem;
+  max-width: 100%;
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.pizza-container:hover{
-box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 12px;
-    transform: scale(1.01)
+.pizza-container:hover {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 12px;
+  transform: scale(1.01);
 }
-.pizza-img-container{
-    width: 20rem;
-    height: 20rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1rem;
-
+.pizza-img-container {
+  width: 20rem;
+  height: 20rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
 }
-.pizza-img{
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    
-    
+.pizza-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
-.pizza-items-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
+.pizza-items-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
 }
-.pizza-ingredients{
-    font-style: oblique;
+.pizza-ingredients {
+  font-style: oblique;
+  width: 20rem;
+  padding-right: 1rem;
 }
-.pizza-price{
-font-weight: bold;
-font-size: 2rem;
+.pizza-price {
+  font-weight: bold;
+  font-size: 2rem;
 }
-.pizza-button{
-    width: 10rem;
+.pizza-button {
+  width: 10rem;
 }
