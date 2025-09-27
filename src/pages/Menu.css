@@ -1,0 +1,46 @@
+.menu-filters {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+.menu-btn {
+  margin: 0.5rem;
+  font-size: 1rem;
+}
+.menu-price {
+  margin-left: 1rem;
+  background-color: rgb(184, 255, 180);
+}
+.menu-refresh {
+  margin-left: 1rem;
+}
+.menu-refresh:hover:not(:disabled) {
+  background: #ddd;
+  border: none;
+}
+
+.menu-refresh:disabled,
+.menu-refresh.not-active {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  border: none;
+}
+.menu-ingredients {
+  margin: 1rem 0 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.menu-active {
+  background-color: lightsalmon;
+}
+.menu-found {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.p-6 > * {
+  transition: all 0.1s ease;
+}
