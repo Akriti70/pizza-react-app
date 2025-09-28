@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import supabasePizzas from "./supabase/SupabasePizzas"
 import Menu from "./pages/Menu"
+import Profile from "./pages/Profile";
 
 export default function App() {
   //data for Pizzas
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+         <Route path="/profile" element={<Profile />} />
             
             {/* Partner ke liye future routes */}
             <Route path="/menu" element={<Menu pizzas={pizzas} className="p-10 text-3xl">Menu Page 🍕</Menu>} />

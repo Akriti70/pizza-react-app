@@ -1,6 +1,6 @@
 .navbar {
   background-color: #ffcc00;
-  padding: 10px 20px;
+  padding: 12px 24px;
 }
 
 .nav-container {
@@ -10,22 +10,22 @@
 }
 
 .logo {
+  font-size: 22px;
   font-weight: bold;
   color: #333;
   text-decoration: none;
-  font-size: 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px;
+  gap: 18px;
   align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #333;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .nav-links a:hover {
@@ -33,14 +33,14 @@
 }
 
 .logout-btn {
-  padding: 5px 10px;
-  border: none;
+  padding: 6px 12px;
   background-color: #e63946;
-  color: white;
+  border: none;
   border-radius: 5px;
+  color: white;
   cursor: pointer;
 }
 
 .logout-btn:hover {
-  background-color: #cc2e3b;
+  background-color: #c82333;
 }
