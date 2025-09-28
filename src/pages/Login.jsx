@@ -1,41 +1,46 @@
 
-import { useState } from "react"
-import { login } from "../supabase/auth"
-import "./Login.css"
+import { useState } from "react";
+import { supabase } from "../supabase/supabaseClient";
+import "./Login.css";
 
 export default function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState(null)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    const { error } = await login(email, password)
-    if (error) setError(error.message)
-  }
+    e.preventDefault();
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setMessage(error.message);
+    } else {
+      setMessage("Login successful!");
+    }
+  };
 
   return (
     <div className="login-container">
-      <form onSubmit={handleLogin} className="login-form">
+      <form className="login-form" onSubmit={handleLogin}>
         <h2>Login</h2>
-        {error && <p className="error">{error}</p>}
-
+        {message && <p className="message">{message}</p>}
+        <label>Email</label>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
-
+        <label>Password</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-
         <button type="submit">Login</button>
       </form>
     </div>
-  )
+  );
 }

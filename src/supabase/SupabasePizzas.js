@@ -1,4 +1,4 @@
-import { supabase } from '../supabase/supabaseClient'
+import { supabase } from './supabaseClient';
 
 export default async function supabasePizzas() {
   const { data, error } = await supabase.from('pizzas').select('*');
