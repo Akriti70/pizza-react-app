@@ -2,7 +2,7 @@ import {useState, useEffect, useMemo} from 'react';
 import PizzaCard from '../components/PizzaCard';
 import './Menu.css';
 
-export default function Menu({pizzas}) {
+export default function Menu({pizzas,addToCart}) {
   //useState for Pizzas
   const [pizzasState, setPizzasState] = useState(pizzas);
   //useState for toggle Price
@@ -18,13 +18,11 @@ export default function Menu({pizzas}) {
   }, [pizzas]);
   //Ingredients
   const ingredientsAll = pizzas.flatMap((pizza) => pizza.ingredients);
-  console.log(ingredientsAll);
   const newSetOfIngredients = [...new Set(ingredientsAll)];
-  console.log(newSetOfIngredients);
 
   //RENDER
   const render = pizzasState.map((pizza) => (
-    <PizzaCard key={pizza.id} pizza={pizza} />
+    <PizzaCard key={pizza.id} pizza={pizza} addToCart={addToCart}/>
   ));
   // Toggle price
   const TogglePrice = () => {
@@ -48,7 +46,6 @@ export default function Menu({pizzas}) {
   };
   //useEffect for console ingredientsState
   useEffect(() => {
-    console.log('ingredientsState', ingredientsState);
   }, [ingredientsState]);
   //IngredientsFilter
   const ingredientsFilter = () => {
@@ -74,7 +71,7 @@ export default function Menu({pizzas}) {
       priceState === true
     );
   }, [pizzasState, pizzasOriginal, ingredientsState, priceState]);
-
+  
   //RETURN
   return (
     <>

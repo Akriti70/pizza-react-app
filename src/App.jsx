@@ -8,6 +8,7 @@ import Signup from "./pages/Signup"
 import supabasePizzas from "./supabase/SupabasePizzas"
 import Menu from "./pages/Menu"
 import Profile from "./pages/Profile";
+import Cart from "./pages/Cart"
 
 export default function App() {
   //data for Pizzas
@@ -20,6 +21,19 @@ export default function App() {
       fetchData()
   },[])
   ///
+  //for CART
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (pizza) =>
+    setCart((p) => {
+      const existing = p.find((el) => el.id === pizza.id);
+      if (existing) {
+        return p.map((el) =>
+          el.id === pizza.id ? {...el, qty: el.qty + 1} : el
+        );
+      }
+      return [...p, {...pizza, qty: 1}];
+    });
 
   return (
     <Router>
@@ -36,8 +50,10 @@ export default function App() {
          <Route path="/profile" element={<Profile />} />
             
             {/* Partner ke liye future routes */}
-            <Route path="/menu" element={<Menu pizzas={pizzas} className="p-10 text-3xl">Menu Page 🍕</Menu>} />
-            <Route path="/cart" element={<h1 className="p-10 text-3xl">Cart Page 🛒</h1>} />
+<Route 
+  path="/menu" 
+  element={<Menu pizzas={pizzas} addToCart={addToCart} className="p-10 text-3xl" />} 
+/>            <Route path="/cart" element={<Cart pizzas={pizzas} cart={cart} />}/>
             <Route path="/checkout" element={<h1 className="p-10 text-3xl">Checkout Page ✅</h1>} />
           </Routes>
         </main>
