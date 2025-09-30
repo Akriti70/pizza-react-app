@@ -1,30 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase/supabaseClient";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [session, setSession] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Load session on component mount
+    // Load session on mount
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
-    // Listen to session changes (login/logout)
-    const { data: subscription } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-      }
-    ).data;
+    // Listen for session changes
+    const { subscription } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
 
+    // Cleanup subscription on unmount
     return () => subscription?.unsubscribe();
   }, []);
 
   async function handleLogout() {
     await supabase.auth.signOut();
-    setSession(null); // local state भी reset कर दो
+    setSession(null); // Reset local state
+    navigate("/"); // Redirect to Home
   }
 
   return (

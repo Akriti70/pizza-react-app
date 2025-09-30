@@ -1,38 +1,21 @@
 
-.home {
-  background: linear-gradient(to right, #dc2626, #facc15);
-  color: white;
-  height: 80vh;
+.hero {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 3rem 5%;
 }
 
-.home h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+/* Left Side */
+.hero-left {
+  max-width: 50%;
 }
 
-.home p {
-  max-width: 600px;
-  margin-bottom: 30px;
-  font-size: 1.2rem;
-}
-
-.order-btn {
-  background: white;
-  color: #dc2626;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.order-btn:hover {
-  background: #facc15;
-  color: #1f2937;
+/* Right Side with background */
+.hero-right {
+  flex: 1;
+  background: url("/src/assets/image/rhamely-StQSCUWEYOs-unsplash.jpg") no-repeat center;
+  background-size: contain; /* or 'cover' depending on your image */
+  height: 500px; /* adjust as needed */
+  position: relative;
 }
