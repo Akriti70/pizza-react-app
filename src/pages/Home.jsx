@@ -1,14 +1,33 @@
 
-import { Link } from "react-router-dom"
-import "./Home.css"
+import "./Home.css";
+import { FaPlay } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="home">
-      <h1>Welcome to PizzaApp </h1>
-      <p>Order your favorite pizzas with just a click! Fresh, hot, and delivered to your doorstep.</p>
-      <Link to="/menu" className="order-btn">Order Now</Link>
-    </div>
-  )
-}
+    <section className="hero">
+      <div className="overlay">
+        <div className="hero-content">
+          <span className="tag">🚴 Bike Delivery</span>
+          <h1>
+            Fastest <span className="highlight">Delivery</span> & Easy Pickup.
+          </h1>
+          <p>
+            Grocen assures fresh Pizza everyday to your family without
+            getting out from your apartment.
+          </p>
 
+          <div className="hero-buttons">
+            <a href="/menu" className="order-btn">Order Now</a>
+            <button className="process-btn">
+              <FaPlay /> Order Process
+            </button>
+          </div>
+
+          <div className="sub-text">
+            👩‍🍳 When you are too Hungry, we are just a click away!
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

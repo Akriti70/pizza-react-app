@@ -1,117 +1,178 @@
-import {useState, useEffect, useMemo} from 'react';
-import PizzaCard from '../components/PizzaCard';
-import './Menu.css';
+import { useState, useEffect, useMemo } from "react";
+import PizzaCard from "../components/PizzaCard";
+import "./Menu.css";
 
-export default function Menu({pizzas}) {
-  //useState for Pizzas
+export default function Menu({ pizzas }) {
   const [pizzasState, setPizzasState] = useState(pizzas);
-  //useState for toggle Price
-  const [priceState, setPriceState] = useState(true);
-  //Ingredients State
+  const [priceState, setPriceState] = useState(true); // true = Low-High
   const [ingredientsState, setIngredientsState] = useState([]);
-  //new
   const [pizzasOriginal, setPizzasOriginal] = useState(pizzas);
-  //useEffect for async data
+
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [popularityFilter, setPopularityFilter] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
-    setPizzasOriginal(pizzas); //new
+    setPizzasOriginal(pizzas);
     setPizzasState(pizzas);
   }, [pizzas]);
-  //Ingredients
-  const ingredientsAll = pizzas.flatMap((pizza) => pizza.ingredients);
-  console.log(ingredientsAll);
-  const newSetOfIngredients = [...new Set(ingredientsAll)];
-  console.log(newSetOfIngredients);
 
-  //RENDER
-  const render = pizzasState.map((pizza) => (
-    <PizzaCard key={pizza.id} pizza={pizza} />
-  ));
-  // Toggle price
+  // Unique Ingredients
+  const ingredientsAll = pizzas.flatMap((pizza) => pizza.ingredients);
+  const newSetOfIngredients = [...new Set(ingredientsAll)];
+
+  // Toggle Price Sorting
   const TogglePrice = () => {
-    let result = pizzasState.toSorted((a, b) =>
+    const result = [...pizzasState].sort((a, b) =>
       priceState ? a.price - b.price : b.price - a.price
     );
     setPizzasState(result);
     setPriceState(!priceState);
   };
-  //Refresh
+
+  // Reset all filters
   const refresh = () => {
-    setPizzasState(pizzas);
+    setPizzasState(pizzasOriginal);
     setIngredientsState([]);
+    setCategoryFilter("All");
+    setPopularityFilter(false);
+    setSearchTerm("");
     setPriceState(true);
   };
-  //Ingredient Toggle
+
+  // Toggle ingredient selection
   const ingredientToggle = (ing) => {
     setIngredientsState((prev) =>
       prev.includes(ing) ? prev.filter((x) => x !== ing) : [...prev, ing]
     );
   };
-  //useEffect for console ingredientsState
-  useEffect(() => {
-    console.log('ingredientsState', ingredientsState);
-  }, [ingredientsState]);
-  //IngredientsFilter
-  const ingredientsFilter = () => {
-    let filteredResult = [...pizzasOriginal];
 
+  // Apply filters and search
+  const applyFilters = () => {
+    let filtered = [...pizzasOriginal];
+
+    // Category filter
+    if (categoryFilter !== "All") {
+      filtered = filtered.filter((p) => p.category === categoryFilter);
+    }
+
+    // Ingredients filter
     if (ingredientsState.length > 0) {
-      filteredResult = filteredResult.filter((pizza) =>
+      filtered = filtered.filter((pizza) =>
         ingredientsState.every((ing) => pizza.ingredients.includes(ing))
       );
     }
 
-    setPizzasState(filteredResult);
+    // Popularity filter
+    if (popularityFilter) {
+      filtered = filtered.sort((a, b) => b.popularity - a.popularity);
+    }
+
+    // Search filter
+    if (searchTerm.trim() !== "") {
+      const lowerSearch = searchTerm.toLowerCase();
+      filtered = filtered.filter((pizza) =>
+        pizza.name.toLowerCase().includes(lowerSearch)
+      );
+    }
+
+    setPizzasState(filtered);
   };
-  //UseEffect for IngredientsFilter
+
   useEffect(() => {
-    ingredientsFilter();
-  }, [ingredientsState]);
-  //for refresh Button
+    applyFilters();
+  }, [ingredientsState, categoryFilter, popularityFilter, searchTerm]);
+
   const isSame = useMemo(() => {
     return (
       JSON.stringify(pizzasState) === JSON.stringify(pizzasOriginal) &&
       ingredientsState.length === 0 &&
+      categoryFilter === "All" &&
+      !popularityFilter &&
+      searchTerm === "" &&
       priceState === true
     );
-  }, [pizzasState, pizzasOriginal, ingredientsState, priceState]);
+  }, [
+    pizzasState,
+    pizzasOriginal,
+    ingredientsState,
+    categoryFilter,
+    popularityFilter,
+    searchTerm,
+    priceState,
+  ]);
 
-  //RETURN
   return (
-    <>
-      <div className="menu-filters">Filters</div>
+    <div className="menu-container">
+      <h1 className="menu-title">🍕 Pizza Menu</h1>
 
-      <button className="menu-price" onClick={TogglePrice}>
-        Price {priceState ? 'Low-High' : 'High-Low'}
-      </button>
-      <button
-        className={`menu-refresh ${isSame ? 'not-active' : ''}`}
-        onClick={refresh}
-      >
-        Refresh
-      </button>
+      {/* Filters Row */}
+      <div className="menu-filters-row">
+        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+          {["All", "Veg", "Non-Veg"].map((cat) => (
+            <button
+              key={cat}
+              className={`filter-btn ${categoryFilter === cat ? "active" : ""}`}
+              onClick={() => setCategoryFilter(cat)}
+            >
+              {cat}
+            </button>
+          ))}
 
+          <button className="filter-btn" onClick={TogglePrice}>
+            Price {priceState ? "⬆ Low-High" : "⬇ High-Low"}
+          </button>
+
+          <button
+            className={`filter-btn ${popularityFilter ? "active" : ""}`}
+            onClick={() => setPopularityFilter((prev) => !prev)}
+          >
+            ⭐ Popular
+          </button>
+
+          <button
+            className={`filter-btn ${isSame ? "disabled" : ""}`}
+            onClick={refresh}
+          >
+            🔄 Refresh
+          </button>
+        </div>
+
+        {/* Pizza Search */}
+        <input
+          type="text"
+          placeholder="Search pizza..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      {/* Ingredients */}
       <div className="menu-ingredients">
-        Ingredients:
-        <div>
+        <p>Ingredients:</p>
+        <div className="ingredients-grid">
           {newSetOfIngredients.map((ing, index) => (
             <button
-              className={`menu-btn ${
-                ingredientsState.includes(ing) ? 'menu-active' : ''
-              }`}
-              onClick={() => {
-                ingredientToggle(ing);
-              }}
               key={index}
+              className={`menu-btn ${
+                ingredientsState.includes(ing) ? "menu-active" : ""
+              }`}
+              onClick={() => ingredientToggle(ing)}
             >
               {ing}
             </button>
           ))}
         </div>
       </div>
+
       <div className="menu-found">Pizzas found: {pizzasState.length}</div>
-      <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {render}
+
+      {/* Pizza Grid */}
+      <div className="grid">
+        {pizzasState.map((pizza) => (
+          <PizzaCard key={pizza.id} pizza={pizza} />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
