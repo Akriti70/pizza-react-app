@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import PizzaCard from "../components/PizzaCard";
 import "./Menu.css";
 
-export default function Menu({ pizzas }) {
+export default function Menu({ pizzas, addToCart }) {
   const [pizzasState, setPizzasState] = useState(pizzas);
   const [priceState, setPriceState] = useState(true); // true = Low-High
   const [ingredientsState, setIngredientsState] = useState([]);
@@ -147,9 +147,19 @@ export default function Menu({ pizzas }) {
         />
       </div>
 
-      {/* Ingredients */}
+      {/* Ingredients Section */}
       <div className="menu-ingredients">
-        <p>Ingredients:</p>
+        <p
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "600",
+            marginBottom: "0.5rem",
+            color: "#ff4d4d",
+          }}
+        >
+          🍕 Choose your pizza according to your favorite ingredients:
+        </p>
+
         <div className="ingredients-grid">
           {newSetOfIngredients.map((ing, index) => (
             <button
@@ -168,9 +178,9 @@ export default function Menu({ pizzas }) {
       <div className="menu-found">Pizzas found: {pizzasState.length}</div>
 
       {/* Pizza Grid */}
-      <div className="grid">
+      <div className="pizza-grid">
         {pizzasState.map((pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} />
+          <PizzaCard key={pizza.id} pizza={pizza} addToCart={addToCart} />
         ))}
       </div>
     </div>

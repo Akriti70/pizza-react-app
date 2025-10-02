@@ -2,20 +2,133 @@
 .hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 3rem 5%;
-}
-
-/* Left Side */
-.hero-left {
-  max-width: 50%;
-}
-
-/* Right Side with background */
-.hero-right {
-  flex: 1;
-  background: url("/src/assets/image/rhamely-StQSCUWEYOs-unsplash.jpg") no-repeat center;
-  background-size: contain; /* or 'cover' depending on your image */
-  height: 500px; /* adjust as needed */
+  justify-content: center;
+  height: 100vh;
+  width: 100vw; 
+  background: url('../assets/image/nik-tE2EynlYV-A-unsplash.jpg') no-repeat center center;
+  background-size: cover;
   position: relative;
+  overflow: hidden;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.35); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  width: 600px;
+  height: 700px; 
+  text-align: center;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.05); /* subtle inner bg */
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+
+.tag {
+  display: inline-block;
+  background: #ff4d4d;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.hero-content h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content .highlight {
+  color: #ffcc33;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.order-btn {
+  background: #ff4d4d;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.process-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sub-text {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+
+
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  .order-btn, .process-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .order-btn, .process-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .sub-text {
+    font-size: 0.95rem;
+  }
+}
+
