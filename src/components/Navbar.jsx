@@ -18,21 +18,26 @@ export default function Navbar() {
       setSession(session);
     });
 
-    // Cleanup subscription on unmount
     return () => subscription?.unsubscribe();
   }, []);
 
   async function handleLogout() {
     await supabase.auth.signOut();
-    setSession(null); // Reset local state
-    navigate("/"); // Redirect to Home
+    setSession(null);
+    navigate("/");
   }
 
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <Link to="/" className="logo">PizzaApp</Link>
+        {/* Logo with integrated pizza slice */}
+        <Link to="/" className="logo">
+          <span className="logo-text">
+            Pizz<span className="pizza-slice">🍕</span>aApp
+          </span>
+        </Link>
 
+        {/* Navigation Links */}
         <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
@@ -40,8 +45,8 @@ export default function Navbar() {
 
           {!session ? (
             <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login" className="auth-link">Login</Link>
+              <Link to="/signup" className="auth-link signup-btn">Signup</Link>
             </>
           ) : (
             <>

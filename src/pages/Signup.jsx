@@ -19,10 +19,13 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSignup}>
-        <h2>Create Account</h2>
+    <div className="signup-hero">
+      <div className="overlay"></div>
+      <form className="signup-card" onSubmit={handleSignup}>
+        <h2>Create Account ✨</h2>
+        <p className="sub-text">Join us and get started today</p>
         {message && <p className="message">{message}</p>}
+        
         <label>Email</label>
         <input
           type="email"
@@ -31,6 +34,7 @@ export default function Signup() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <label>Password</label>
         <input
           type="password"
@@ -39,7 +43,12 @@ export default function Signup() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign Up</button>
+
+        <button type="submit" className="signup-btn">Sign Up</button>
+
+        <p className="login-text">
+          Already have an account? <a href="/login">Login</a>
+        </p>
       </form>
     </div>
   );

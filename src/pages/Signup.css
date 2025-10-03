@@ -1,70 +1,126 @@
 
 
 
-/* Signup.css */
-.signup-container {
+/* Full-screen background */
+.signup-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("/src/assets/image/rhamely-StQSCUWEYOs-unsplash.jpg") no-repeat center center/cover;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f0f4f8;
+  justify-content: center;
 }
 
-.signup-form {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  width: 350px;
-  display: flex;
-  flex-direction: column;
+/* Overlay */
+.signup-hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
 }
 
-.signup-form h2 {
+/* Glassmorphism Card */
+.signup-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.signup-form label {
-  margin: 10px 0 5px;
-  font-weight: 500;
-  color: #555;
-}
-
-.signup-form input {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.signup-form input:focus {
-  border-color: #0070f3;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,112,243,0.3);
-}
-
-.signup-form button {
-  padding: 12px;
-  background-color: #0070f3;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background 0.3s ease;
 }
 
-.signup-form button:hover {
-  background-color: #005bb5;
+/* Headings */
+.signup-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
-.message {
-  text-align: center;
-  margin-bottom: 15px;
-  color: red;
+.sub-text {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  color: #ddd;
+}
+
+/* Input Fields */
+.signup-card label {
+  display: block;
+  text-align: left;
+  margin: 0.8rem 0 0.3rem;
   font-weight: 500;
+  color: #eee;
+}
+
+.signup-card input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 0.8rem;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.signup-card input:focus {
+  border: 1.5px solid #ff6600;
+  box-shadow: 0 0 10px rgba(255,102,0,0.5);
+}
+
+/* Button */
+.signup-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #ff6600, #ff3300);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+  background: linear-gradient(135deg, #ff8533, #ff3300);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 102, 0, 0.6);
+}
+
+/* Message */
+.message {
+  margin: 0.8rem 0;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.3);
+  color: #ffdddd;
+  font-size: 0.9rem;
+}
+
+/* Login link */
+.login-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.login-text a {
+  color: #ff6600;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
 }

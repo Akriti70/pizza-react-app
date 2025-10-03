@@ -9,6 +9,8 @@ import supabasePizzas from "./supabase/SupabasePizzas";
 import Menu from "./pages/Menu";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export default function App() {
   const [pizzas, setPizzas] = useState([]);

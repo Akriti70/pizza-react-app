@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { supabase } from "../supabase/supabaseClient";
 import "./Login.css";
@@ -19,9 +18,11 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleLogin}>
-        <h2>Login</h2>
+    <div className="login-hero">
+      <div className="overlay"></div>
+      <form className="login-card" onSubmit={handleLogin}>
+        <h2>Welcome Back 👋</h2>
+        <p className="sub-text">Please login to continue</p>
         {message && <p className="message">{message}</p>}
         <label>Email</label>
         <input
@@ -39,7 +40,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-btn">Login</button>
+        <p className="signup-text">
+          Don’t have an account? <a href="#">Sign up</a>
+        </p>
       </form>
     </div>
   );
