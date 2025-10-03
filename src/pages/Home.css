@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 100vw; 
-  background: url('../assets/image/nik-tE2EynlYV-A-unsplash.jpg') no-repeat center center;
+  width: 100vw;
+  background: url('../assets/image/nik-tE2EynlYV-A-unsplash.jpg') repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
